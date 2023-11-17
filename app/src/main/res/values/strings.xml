@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">136_UCP2</string>
+    <string name="back_button">Kembali</string>
+    <string name="next">Lanjut</string>
+    <string name="cancel">Batal</string>
+    <string name="btn_submit">Sumbit</string>
+    <string name="btn_back">Back</string>
+    <string name="nama">Nama</string>
+    <string name="alamat">Alamat</string>
+    <string name="konsentrasi">Konsentrasi</string>
+    <string name="judul">Judul</string>
+    <string name="Haris_Setyawan">Haris Setiawan</string>
+    <string name="Dwi_Djoko">Dwi Djoko</string>
+</resources>
