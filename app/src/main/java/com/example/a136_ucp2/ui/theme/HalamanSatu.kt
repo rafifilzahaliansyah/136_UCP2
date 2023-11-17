@@ -7,13 +7,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -100,9 +98,7 @@ fun HalamanSatu(
             Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
             verticalAlignment = Alignment.Bottom
         ) {
-            Selectdosen(
-                options = jenis.map { id -> context.resources.getString(id) },
-                onSelectChanged = { cobaViewModel.setJenisK(it) })
+
             OutlinedButton(
                 modifier = Modifier.weight(1f),
                 onClick =
@@ -118,36 +114,5 @@ fun HalamanSatu(
             }
         }
 
-    }
-}
-@Composable
-fun dosen(
-    options: List<String>,
-    onSelectChanged: (String) -> Unit = {}
-) {
-    var selectedValue by rememberSaveable { mutableStateOf("") }
-
-    Row (modifier = Modifier.padding(16.dp)) {
-        options.forEach { item ->
-            Row (
-                modifier = Modifier.selectable(
-                    selected = selectedValue == item,
-                    onClick = {
-                        selectedValue = item
-                        onSelectChanged(item)
-                    }
-                ),
-                verticalAlignment = Alignment.CenterVertically
-            ){
-                RadioButton(
-                    selected = selectedValue == item,
-                    onClick = {
-                        selectedValue = item
-                        onSelectChanged(item)
-                    }
-                )
-                Text(item)
-            }
-        }
     }
 }
