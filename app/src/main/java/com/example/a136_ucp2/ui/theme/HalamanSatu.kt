@@ -7,11 +7,14 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -61,7 +64,7 @@ fun HalamanSatu(
             .fillMaxSize()
     ) {
         Text(
-            text = "Data Pelanggan",
+            text = "Formulir pengajuan Skripsi",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(16.dp))
@@ -89,6 +92,36 @@ fun HalamanSatu(
             text = "konsentrasi") },
         )
         Spacer(modifier = Modifier.padding(16.dp))
+        var DosenYgDipilih by rememberSaveable {mutableStateOf("") }
+
+        Column (modifier = modifier,
+            verticalArrangement = Arrangement.SpaceBetween) {
+            Column (modifier =
+            Modifier.padding(dimensionResource(R.dimen.padding_medium))){
+                DosenYgDipilih.forEach { item ->
+                    Row (modifier = Modifier.selectable(
+                        selected = DosenYgDipilih == item,
+                        onClick = {
+                            DosenYgDipilih = item
+                            onSelectionChanged(item)
+                        }
+                    ),
+                        verticalAlignment = Alignment.CenterVertically
+                    ){
+                        RadioButton(selected = DosenYgDipilih == item,
+                            onClick = {
+                                DosenYgDipilih = item
+                                onSelectionChanged(item)
+                            }
+                        )
+                        Text(item)
+
+                    }
+                }
+                Divider(
+                    thickness = dimensionResource(R.dimen.thickness_divider),
+                    modifier = Modifier.padding(bottom = dimensionResource(R.dimen.padding_medium))
+                )
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -98,7 +131,6 @@ fun HalamanSatu(
             Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
             verticalAlignment = Alignment.Bottom
         ) {
-
             OutlinedButton(
                 modifier = Modifier.weight(1f),
                 onClick =
